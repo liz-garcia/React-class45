@@ -20,9 +20,7 @@ const ProductList = ({ selectedCategory }) => {
                 className="product-image"
               />
             </div>
-            <strong>
-              <p type="text">{product.title.replace(/^FAKE: /, "")}</p>
-            </strong>
+              <p type="text" className="product-title">{product.title.replace(/^FAKE: /, "")}</p>
           </li>
         ))}
       </ul>

@@ -20,7 +20,7 @@ const CategoryList = ({ selectedCategory, setSelectedCategory }) => {
               key={category}
               onClick={() => handleCategoryClick(category)}
               className={
-                String(category) === String(selectedCategory) ? "selected" : ""
+                category === selectedCategory ? "selected" : ""
               }
             >
               {category}
