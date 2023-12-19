@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import ProductList from "./components/ProductList.js";
 import CategoryList from "./components/CategoryList.js";
+import ProductDetails from "./components/ProductDetails.js";
 
 function App() {
   const [selectedCategory, setSelectedCategory, setSelectedProduct] =
@@ -36,6 +37,7 @@ function App() {
             path="/products/:category"
             element={<ProductList selectedCategory={selectedCategory} />}
           />
+          <Route path="/products/:id" element={<ProductDetails />} />
         </Routes>
       </div>
     </Router>
