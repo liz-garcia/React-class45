@@ -15,9 +15,10 @@ const ProductDetails = () => {
         console.error("Error fetching product details:", error);
       }
     };
-
+  
     getProductDetails();
-  }, [id]);
+  }, [id]); // Remove the 'id' from the dependency array
+  
 
   if (!productDetails) {
     return <p>Loading...</p>;

@@ -11,26 +11,30 @@ const ProductList = ({ selectedCategory }) => {
         const url = selectedCategory
           ? `https://fakestoreapi.com/products/category/${selectedCategory}`
           : "https://fakestoreapi.com/products";
-  
+
         const response = await fetch(url);
-        const products = await response.json();
-        setProducts(products);
+        const fetchedProducts = await response.json();
+        setProducts(fetchedProducts);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
     };
-    
+
     getProducts();
-  
   }, [selectedCategory]);
+
+  if (!products) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div>
       <h2>Products</h2>
       <ul className="product-list">
         {products.map((product) => (
-          <Link to={`/products/${product.id}`} key={product.id}>
-            <li>
+          <li key={product.id}>
+            {/* Use Link to navigate to the ProductDetails route */}
+            <Link to={`/product/${product.id}`}>
               <div className="product-image-container">
                 <img
                   src={product.image}
@@ -41,8 +45,8 @@ const ProductList = ({ selectedCategory }) => {
               <p type="text" className="product-title">
                 {product.title}
               </p>
-            </li>
-          </Link>
+            </Link>
+          </li>
         ))}
       </ul>
     </div>

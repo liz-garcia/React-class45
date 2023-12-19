@@ -6,54 +6,50 @@ import CategoryList from "./components/CategoryList.js";
 import ProductDetails from "./components/ProductDetails.js";
 
 function App() {
-  const [selectedCategory, setSelectedCategory, setSelectedProduct] =
-    useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-                setSelectedProduct={setSelectedProduct}
-              />
-            }
-          />
-          <Route
-            path="/products"
-            element={
-              <Home
-                selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-                setSelectedProduct={setSelectedProduct}
-              />
-            }
-          />
-          <Route
-            path="/products/:category"
-            element={<ProductList selectedCategory={selectedCategory} />}
-          />
-          <Route path="/products/:id" element={<ProductDetails />} />
-        </Routes>
-      </div>
-    </Router>
+    <>
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                />
+              }
+            />
+            <Route
+              path="/products"
+              element={
+                <Home
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                />
+              }
+            />
+            <Route
+              path="/products/:category"
+              element={<ProductList selectedCategory={selectedCategory} />}
+            />
+            <Route path="/product/:id" element={<ProductDetails />} />
+          </Routes>
+        </div>
+      </Router>
+    </>
   );
 }
 
-const Home = ({ selectedCategory, setSelectedCategory, setSelectedProduct }) => (
+const Home = ({ selectedCategory, setSelectedCategory }) => (
   <>
     <CategoryList
       selectedCategory={selectedCategory}
       setSelectedCategory={setSelectedCategory}
     />
-    <ProductList
-      selectedCategory={selectedCategory}
-      setSelectedProduct={setSelectedProduct}
-    />
+    <ProductList selectedCategory={selectedCategory} />
   </>
 );
 

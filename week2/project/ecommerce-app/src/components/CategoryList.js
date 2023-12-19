@@ -7,14 +7,18 @@ const CategoryList = ({ selectedCategory, setSelectedCategory }) => {
   const getCategories = async () => {
     try {
       const response = await fetch("https://fakestoreapi.com/products/categories");
-      const categories = await response.json();
-      setCategories(categories);
+      const fetchedCategories = await response.json();
+      setCategories(fetchedCategories);
     } catch (error) {
       console.error("Error fetching categories:", error);
     }
   };
 
   useEffect(() => { getCategories(); }, []);
+
+  if (!categories) {
+    return <p>Loading...</p>;
+  }
 
   const handleCategoryClick = (category) => {
     setSelectedCategory((prevCategory) =>
