@@ -41,7 +41,7 @@ const ProductList = ({ selectedCategory }) => {
                   className="product-image"
                 />
               </div>
-              <p type="text" className="product-title">
+              <p className="product-title">
                 {product.title}
               </p>
             </Link>
