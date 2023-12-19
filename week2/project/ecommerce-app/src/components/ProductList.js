@@ -33,7 +33,6 @@ const ProductList = ({ selectedCategory }) => {
       <ul className="product-list">
         {products.map((product) => (
           <li key={product.id}>
-            {/* Use Link to navigate to the ProductDetails route */}
             <Link to={`/product/${product.id}`}>
               <div className="product-image-container">
                 <img

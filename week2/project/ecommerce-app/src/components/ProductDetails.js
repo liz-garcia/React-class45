@@ -17,7 +17,7 @@ const ProductDetails = () => {
     };
   
     getProductDetails();
-  }, [id]); // Remove the 'id' from the dependency array
+  }, [id]);
   
 
   if (!productDetails) {
