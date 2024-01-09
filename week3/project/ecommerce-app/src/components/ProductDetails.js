@@ -1,26 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import useFetch from "../hooks/useFetch.js";
 import { useParams } from "react-router-dom";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const [productDetails, setProductDetails] = useState(null);
 
-  useEffect(() => {
-    const getProductDetails = async () => {
-      try {
-        const response = await fetch(`https://fakestoreapi.com/products/${id}`);
-        const details = await response.json();
-        setProductDetails(details);
-      } catch (error) {
-        console.error("Error fetching product details:", error);
-      }
-    };
+  const { data: productDetails, loading, error } = useFetch(
+    `https://fakestoreapi.com/products/${id}`
+  );
 
-    getProductDetails();
-  }, [id]);
-
-  if (!productDetails) {
+  if (loading) {
     return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error fetching product details: {error.message}</p>;
   }
 
   return (
