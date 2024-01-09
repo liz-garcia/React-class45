@@ -25,12 +25,18 @@ const ProductDetails = () => {
   }
 
   return (
-    <div>
+    <div className="product-view">
       <h1>{productDetails.title}</h1>
-      <p>{productDetails.description}</p>
-      <img src={productDetails.image} alt={productDetails.title} />
-      <p>Price: ${productDetails.price}</p>
-      <p>Category: {productDetails.category}</p>
+      <div className="product-details">
+        <div className="product-info">
+          <p>{productDetails.description}</p>
+          <p>Price: ${productDetails.price}</p>
+          <p>Category: {productDetails.category}</p>
+        </div>
+        <div className="image-container">
+        <img src={productDetails.image} alt={productDetails.title} className="product-image"/>
+        </div>
+      </div>
     </div>
   );
 };
