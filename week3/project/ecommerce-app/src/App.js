@@ -4,6 +4,9 @@ import "./App.css";
 import ProductList from "./components/ProductList.js";
 import CategoryList from "./components/CategoryList.js";
 import ProductDetails from "./components/ProductDetails.js";
+import FavoritesPage from "./components/FavoritesPage.js";
+import { Link } from "react-router-dom";
+
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -12,7 +15,11 @@ function App() {
     <>
       <Router>
         <div className="App">
-          <Routes>
+          <div id="navigation">
+            <Link to="/products" className="navigation-item">All Products</Link>
+            <Link to="/favorites" className="navigation-item">Favorites</Link>
+          </div>
+        <Routes>
             <Route
               path="/"
               element={
@@ -35,7 +42,14 @@ function App() {
               path="/products/:category"
               element={<ProductList selectedCategory={selectedCategory} />}
             />
-            <Route path="/product/:id" element={<ProductDetails />} />
+            <Route 
+              path="/product/:id" 
+              element={<ProductDetails />} 
+            /> 
+            <Route 
+              path="/favorites" 
+              element={<FavoritesPage />} 
+            />
           </Routes>
         </div>
       </Router>

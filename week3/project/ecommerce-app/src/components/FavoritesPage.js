@@ -1,51 +1,49 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import FavoritesContext from "../context/FavoritesContext.js";
+import { Link } from "react-router-dom";
 import heartRegular from "../assets/heart-regular.svg";
 import heartSolid from "../assets/heart-solid.svg";
-import "../App.css";
 
-const ProductList = ({ selectedCategory }) => {
-  const [products, setProducts] = useState([]);
-
+const FavoritesPage = () => {
   const { favoriteIds, addToFavorites, removeFromFavorites } =
     useContext(FavoritesContext);
+  const [favoriteProducts, setFavoriteProducts] = useState([]);
 
   useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const url = selectedCategory
-          ? `https://fakestoreapi.com/products/category/${selectedCategory}`
-          : "https://fakestoreapi.com/products";
+    const fetchFavoriteProducts = async () => {
+      const promises = favoriteIds.map(async (productId) => {
+        const response = await fetch(
+          `https://fakestoreapi.com/products/${productId}`
+        );
+        const favoriteProduct = await response.json();
+        return favoriteProduct;
+      });
 
-        const response = await fetch(url);
-        const fetchedProducts = await response.json();
-        setProducts(fetchedProducts);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
+      const products = await Promise.all(promises);
+      setFavoriteProducts(products);
     };
 
-    getProducts();
-  }, [selectedCategory]);
+    fetchFavoriteProducts();
+  }, [favoriteIds]);
 
-  if (!products) {
-    return <p>Loading...</p>;
+  if (!favoriteProducts.length) {
+    return (
+        <div id="favorites">
+            <h2>Your Favorites</h2>
+            <p>You haven't chosen any favorites yet!</p>
+        </div>);
   }
 
   return (
-    <div>
-      <h2>Products</h2>
+    <div id="favorites">
+      <h2>Favorites</h2>
       <ul className="product-list">
-        {products.map((product) => (
+        {favoriteProducts.map((product) => (
           <li key={product.id} id={product.id}>
             <img
-              src={
-                favoriteIds.includes(product.id) ? 
-                heartSolid : heartRegular}
+              src={favoriteIds.includes(product.id) ? heartSolid : heartRegular}
               alt={
-                favoriteIds.includes(product.id) ? 
-                "Favorited" : "Not Favorited"
+                favoriteIds.includes(product.id) ? "Favorited" : "Not Favorited"
               }
               className="heart-icon"
               onClick={() => {
@@ -73,4 +71,4 @@ const ProductList = ({ selectedCategory }) => {
   );
 };
 
-export default ProductList;
+export default FavoritesPage;
