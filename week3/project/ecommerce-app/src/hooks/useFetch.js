@@ -23,7 +23,7 @@ const useFetch = (url, triggerFetch = true) => {
     if (triggerFetch) {
       fetchData();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url, triggerFetch]);
 
   return { data, loading, error, fetchData };
