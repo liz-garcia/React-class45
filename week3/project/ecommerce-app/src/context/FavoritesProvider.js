@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FavoritesContext from "../context/FavoritesContext.js";
+import FavoritesContext from "./FavoritesContext.js";
 
 const FavoritesProvider = ({ children }) => {
   const [favoriteIds, setFavoriteIds] = useState([]);

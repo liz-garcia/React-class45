@@ -27,8 +27,7 @@ const CategoryList = ({ selectedCategory, setSelectedCategory }) => {
   };
 
   return (
-    <div>
-      <h2>Categories</h2>
+    <>
       <ul className="category-list">
         {categories.map((category) => (
           <li
@@ -40,7 +39,7 @@ const CategoryList = ({ selectedCategory, setSelectedCategory }) => {
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 };
 

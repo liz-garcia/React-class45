@@ -1,12 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import FavoritesContext from "../context/FavoritesContext.js";
-import { Link } from "react-router-dom";
-import heartRegular from "../assets/heart-regular.svg";
-import heartSolid from "../assets/heart-solid.svg";
+import HeartButton from "./HeartButton.js";
+import ProductLink from "./ProductLink.js";
 
 const FavoritesPage = () => {
-  const { favoriteIds, addToFavorites, removeFromFavorites } =
-    useContext(FavoritesContext);
+  const { favoriteIds } = useContext(FavoritesContext);
   const [favoriteProducts, setFavoriteProducts] = useState([]);
 
   useEffect(() => {
@@ -35,35 +33,13 @@ const FavoritesPage = () => {
   }
 
   return (
-    <div id="favorites">
-      <h2>Favorites</h2>
+    <div className="favorites">
+      <h2>Your Favorites</h2>
       <ul className="product-list">
         {favoriteProducts.map((product) => (
           <li key={product.id} id={product.id}>
-            <img
-              src={favoriteIds.includes(product.id) ? heartSolid : heartRegular}
-              alt={
-                favoriteIds.includes(product.id) ? "Favorited" : "Not Favorited"
-              }
-              className="heart-icon"
-              onClick={() => {
-                if (favoriteIds.includes(product.id)) {
-                  removeFromFavorites(product.id);
-                } else {
-                  addToFavorites(product.id);
-                }
-              }}
-            />
-            <Link to={`/product/${product.id}`}>
-              <div className="product-image-container">
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="product-image"
-                />
-              </div>
-              <p className="product-title">{product.title}</p>
-            </Link>
+            <HeartButton productId={product.id}/>
+            <ProductLink productItem={product}/>
           </li>
         ))}
       </ul>
