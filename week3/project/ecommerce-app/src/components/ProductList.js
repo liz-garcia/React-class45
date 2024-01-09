@@ -32,8 +32,8 @@ const ProductList = ({ selectedCategory }) => {
       <ul className="product-list">
         {products.map((product) => (
           <li key={product.id} id={product.id}>
-            <HeartButton productId={product.id}/>
-            <ProductLink productItem={product}/>
+            <HeartButton productId={product.id} />
+            <ProductLink productItem={product} />
           </li>
         ))}
       </ul>

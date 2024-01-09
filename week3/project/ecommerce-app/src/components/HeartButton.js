@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext } from "react";
 import FavoritesContext from "../context/FavoritesContext.js";
 import heartRegular from "../assets/heart-regular.svg";
 import heartSolid from "../assets/heart-solid.svg";

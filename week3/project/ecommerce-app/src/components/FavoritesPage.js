@@ -26,10 +26,11 @@ const FavoritesPage = () => {
 
   if (!favoriteProducts.length) {
     return (
-        <div id="favorites">
-            <h2>Your Favorites</h2>
-            <p>You haven't chosen any favorites yet!</p>
-        </div>);
+      <div id="favorites">
+        <h2>Your Favorites</h2>
+        <p>You haven't chosen any favorites yet!</p>
+      </div>
+    );
   }
 
   return (
@@ -38,8 +39,8 @@ const FavoritesPage = () => {
       <ul className="product-list">
         {favoriteProducts.map((product) => (
           <li key={product.id} id={product.id}>
-            <HeartButton productId={product.id}/>
-            <ProductLink productItem={product}/>
+            <HeartButton productId={product.id} />
+            <ProductLink productItem={product} />
           </li>
         ))}
       </ul>

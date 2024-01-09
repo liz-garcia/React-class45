@@ -15,10 +15,9 @@ const ProductDetails = () => {
         console.error("Error fetching product details:", error);
       }
     };
-  
+
     getProductDetails();
   }, [id]);
-  
 
   if (!productDetails) {
     return <p>Loading...</p>;
@@ -34,7 +33,11 @@ const ProductDetails = () => {
           <p>Category: {productDetails.category}</p>
         </div>
         <div className="image-container">
-        <img src={productDetails.image} alt={productDetails.title} className="product-image"/>
+          <img
+            src={productDetails.image}
+            alt={productDetails.title}
+            className="product-image"
+          />
         </div>
       </div>
     </div>
