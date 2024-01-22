@@ -1,8 +1,8 @@
+import "./App.css";
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "./App.css";
+import Home from "./components/Home.js";
 import ProductList from "./components/ProductList.js";
-import CategoryList from "./components/CategoryList.js";
 import ProductDetails from "./components/ProductDetails.js";
 
 function App() {
@@ -42,15 +42,5 @@ function App() {
     </>
   );
 }
-
-const Home = ({ selectedCategory, setSelectedCategory }) => (
-  <>
-    <CategoryList
-      selectedCategory={selectedCategory}
-      setSelectedCategory={setSelectedCategory}
-    />
-    <ProductList selectedCategory={selectedCategory} />
-  </>
-);
 
 export default App;
